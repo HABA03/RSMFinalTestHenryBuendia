@@ -15,5 +15,8 @@ namespace RSM.DAL.Models
 
 		//Foreign key
 		public int ProductCategoryID { get; set; }
+
+		public ProductCategory ProductCategory { get; set; }
+		public List<Product> Product { get; set; }
 	}
 }

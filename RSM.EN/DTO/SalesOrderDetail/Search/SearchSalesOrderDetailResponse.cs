@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSM.DAL.Models
+namespace RSM.EN.DTO.SalesOrderDetail.Search
 {
-	public class SalesOrderDetail
+	public class SearchSalesOrderDetailResponse
 	{
 		public int SalesOrderDetailID { get; set; }
 		public string? CarrierTrackingNumber { get; set; }
@@ -16,12 +16,7 @@ namespace RSM.DAL.Models
 		public decimal LineTotal { get; set; }
 		public Guid rowguid { get; set; }
 		public DateTime ModifiedDate { get; set; }
-
-		//Foreign keys
 		public int ProductID { get; set; }
 		public int SalesOrderID { get; set; }
-
-		public Product Product { get; set; }
-		public SalesOrderHeader SalesOrderHeader { get; set; }
 	}
 }

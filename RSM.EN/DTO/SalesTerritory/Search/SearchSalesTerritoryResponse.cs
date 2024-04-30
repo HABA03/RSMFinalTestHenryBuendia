@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSM.DAL.Models
+namespace RSM.EN.DTO.SalesTerritory.Search
 {
-	public class SalesTerritory
+	public class SearchSalesTerritoryResponse
 	{
 		public int TerritoryID { get; set; }
 		public string Name { get; set; }
@@ -17,8 +17,5 @@ namespace RSM.DAL.Models
 		public decimal CostYTD { get; set; }
 		public Guid rowguid { get; set; }
 		public DateTime ModifiedDate { get; set; }
-
-
-		public List<SalesOrderHeader> SalesOrderHeaders { get; set; }
 	}
 }

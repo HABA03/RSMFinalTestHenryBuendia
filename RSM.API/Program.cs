@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using RSM.API.DependencyContainer;
 using RSM.DAL.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<FinalTestDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConecction")));
+
+
+DependencyContainer.RegisterServices(builder.Services);
 
 var app = builder.Build();
 

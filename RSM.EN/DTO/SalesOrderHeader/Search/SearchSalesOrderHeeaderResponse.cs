@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+ 
 
-namespace RSM.DAL.Models
+namespace RSM.EN.DTO.SalesOrderHeader.Search
 {
-	public class SalesOrderHeader
+	public class SearchSalesOrderHeeaderResponse
 	{
 		public int SalesOrderID { get; set; }
 		public byte RevisionNumber { get; set; }
@@ -29,9 +30,5 @@ namespace RSM.DAL.Models
 
 		//Foreign keys
 		public int? TerritoryID { get; set; }
-
-		public SalesTerritory Territory { get; set; }
-		public List<SalesOrderDetail> SalesOrderDetails { get; set; }
-
 	}
 }

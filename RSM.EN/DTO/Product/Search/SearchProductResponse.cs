@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RSM.DAL.Models
+namespace RSM.EN.DTO.Product.Search
 {
-	public class Product
+	public class SearchProductResponse
 	{
 		public int ProductID { get; set; }
 		public string Name { get; set; }
@@ -34,8 +34,5 @@ namespace RSM.DAL.Models
 
 		//Foreign keys
 		public int? ProductSubcategoryID { get; set; }
-
-		public ProductSubcategory ProductSubcategory { get; set; }
-		public List<SalesOrderDetail> SalesOrderDetails { get; set; }
 	}
 }
