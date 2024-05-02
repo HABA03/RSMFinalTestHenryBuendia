@@ -27,6 +27,8 @@ namespace RSM.EN.DTO.SalesOrderHeader.Search
 		public string? Comment { get; set; }
 		public Guid rowguid { get; set; }
 		public DateTime ModifiedDate { get; set; }
+		public int ShipToAddressID { get; set; }
+		public int BillToAddressID { get; set; }
 
 		//Foreign keys
 		public int? TerritoryID { get; set; }

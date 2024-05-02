@@ -1,4 +1,5 @@
-﻿using RSM.EN.DTO.Product.Search;
+﻿using RSM.EN.DTO.Product.GetSalesReport;
+using RSM.EN.DTO.Product.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace RSM.BL.IServices
 	public interface IProductService
 	{
 		Task<List<SearchProductResponse>> GetAllInformationProduct();
+		Task<List<GetSalesReportResponse>> GetSalesReport();
 	}
 }

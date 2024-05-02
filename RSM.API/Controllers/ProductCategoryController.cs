@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using RSM.BL.IServices;
 using RSM.BL.Services;
 using RSM.EN.DTO.ProductCategory.Search;

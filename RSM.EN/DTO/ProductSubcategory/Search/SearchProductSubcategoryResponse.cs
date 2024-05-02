@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RSM.EN.DTO.ProductCategory.Search;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,6 @@ namespace RSM.EN.DTO.ProductSubcategory.Search
 
 		//Foreign key
 		public int ProductCategoryID { get; set; }
-		public CategoryInformation CategoryInformation { get; set; }
-	}
-
-	public class CategoryInformation 
-	{
-		public int ProductCategoryID { get; set; }
-		public string Name { get; set; }
-		public Guid rowguid { get; set; }
-		public DateTime ModifiedDate { get; set; }
+		public SearchProductCategoryResponse SearchProductCategoryResponse { get; set; }
 	}
 }

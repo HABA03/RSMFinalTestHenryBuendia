@@ -26,11 +26,16 @@ namespace RSM.DAL.Models
 		public string? Comment { get; set; }
 		public Guid rowguid { get; set; }
 		public DateTime ModifiedDate { get; set; }
+		public int ShipToAddressID { get; set; }
+		public int BillToAddressID { get; set; }
+		public int? SalesPersonID { get; set; }
 
 		//Foreign keys
 		public int? TerritoryID { get; set; }
+		public int CustomerID { get; set; }
 
 		public SalesTerritory Territory { get; set; }
+		public Customer Customer { get; set; }
 		public List<SalesOrderDetail> SalesOrderDetails { get; set; }
 
 	}

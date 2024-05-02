@@ -16,6 +16,8 @@ namespace RSM.API.DependencyContainer
 			services.AddScoped<ISalesOrderDetailService, SalesOrderDetailService>();
 			services.AddScoped<IProductService, ProductService>();
 			services.AddScoped<IProductSubcategoryService,  ProductSubcategoryService>();
+			services.AddScoped<ICustomerService, CustomerService>();
+			services.AddScoped<IPersonService, PersonService>();
 
 			//Repositories
 			services.AddTransient<ISalesOrderHeaderRepository, SalesOrderHeaderRepository>();
@@ -24,6 +26,8 @@ namespace RSM.API.DependencyContainer
 			services.AddTransient<ISalesOrderDetailRepository, SalesOrderDetailRepository>();
 			services.AddTransient<IProductRepository, ProductRepository>();
 			services.AddTransient<IProductSubcategoryRepository,  ProductSubcategoryRepository>();
+			services.AddTransient<ICustomerRepository, CustomerRepository>();
+			services.AddTransient<IPersonRepository, PersonRepository>();
 		}
 	}
 }

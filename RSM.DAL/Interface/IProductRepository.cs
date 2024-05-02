@@ -10,5 +10,7 @@ namespace RSM.DAL.Interface
 	public interface IProductRepository
 	{
 		Task<List<Product>> GetAllInformation();
+
+		Task<List<SalesReportInformation1>> GetReportInformation();
 	}
 }
