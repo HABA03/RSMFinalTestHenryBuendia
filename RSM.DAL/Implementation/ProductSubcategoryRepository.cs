@@ -21,10 +21,7 @@ namespace RSM.DAL.Implementation
 
         public async Task<List<ProductSubcategory>> GetAllInformation()
 		{
-			var result = await _context.Set<ProductSubcategory>()
-										.Include(x => x.ProductCategory)
-										.Take(10)
-										.ToListAsync();
+			var result = await _context.Set<ProductSubcategory>().Take(20).ToListAsync();
 			return result;
 		}
 	}

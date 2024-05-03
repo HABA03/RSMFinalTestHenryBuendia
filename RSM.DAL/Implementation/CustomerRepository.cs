@@ -21,7 +21,7 @@ namespace RSM.DAL.Implementation
 
         public async Task<List<Customer>> GetAllInformation()
 		{
-			var result = await _context.Set<Customer>().Take(10).ToListAsync();
+			var result = await _context.Set<Customer>().Take(20).ToListAsync();
 			return result;
 		}
 	}

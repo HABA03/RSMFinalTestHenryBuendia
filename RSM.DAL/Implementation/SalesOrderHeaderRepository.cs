@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RSM.EN.DTO.SalesOrderHeader.GetSalesReport;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RSM.DAL.Implementation
 {
@@ -22,14 +23,11 @@ namespace RSM.DAL.Implementation
 
         public async Task<List<SalesOrderHeader>> GetAllInformation()
 		{
-			var result = await _context.Set<SalesOrderHeader>()
-									.Include(x => x.Territory)
-									.Take(10)
-									.ToListAsync();
+			var result = await _context.Set<SalesOrderHeader>().Take(20).ToListAsync();
 			return result;
 		}
 
-		public async Task<List<GetTheSalesReportResponse>> GetTheSalesReport()
+		public async Task<List<GetTheSalesReportResponse>> GetTheSalesReport(int filterID, string value)
 		{
 			var result = await _context.SalesOrderDetail
 				.Join(_context.SalesOrderHeader,
@@ -75,7 +73,21 @@ namespace RSM.DAL.Implementation
 				.Take(100)
 				.ToListAsync();
 
-			return result;
+            switch (filterID)
+            {
+                case 1:
+                    result = result.Where(resultado => resultado.ProductID == Convert.ToInt32(value)).ToList();
+                    break;
+                case 2:
+                    result = result.Where(resultado => resultado.ProductName.Contains(value)).ToList();
+                    break;
+                case 3:
+                    result = result.Where(resultado => resultado.ProductCategory.Contains(value)).ToList();
+                    break;
+                default:
+                    return result;
+            }
+            return result;
 		}
-	}
+    }
 }

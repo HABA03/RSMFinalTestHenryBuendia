@@ -19,14 +19,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<FinalTestDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConecction")));
 
+// Configure CORS service
 builder.Services.AddCors(options =>
 {
 	options.AddDefaultPolicy(builder =>
-	builder.WithOrigins(config["Cors:ClientUrl"])
-		   .AllowAnyMethod()
-		   .AllowAnyHeader());
+	{
+		builder.WithOrigins("https://localhost:7078")
+			   .AllowAnyMethod()
+			   .AllowAnyHeader();
+	});
 });
-
 
 DependencyContainer.RegisterServices(builder.Services);
 
@@ -44,12 +46,16 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
+app.UseCustomExceptionHandler();
+
+app.UseRouting();
+
 app.UseHttpsRedirection();
 
+// Enable CORS middleware
 app.UseCors();
 
-app.UseAuthorization();
-
+app.UseAuthentication();
 app.MapControllers();
 
 app.Run();

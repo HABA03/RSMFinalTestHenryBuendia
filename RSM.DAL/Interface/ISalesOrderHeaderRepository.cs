@@ -6,6 +6,6 @@ namespace RSM.DAL.Interface
 	public interface ISalesOrderHeaderRepository
 	{
 		Task<List<SalesOrderHeader>> GetAllInformation();
-		Task<List<GetTheSalesReportResponse>> GetTheSalesReport();
+		Task<List<GetTheSalesReportResponse>> GetTheSalesReport(int filterID, string value);
 	}
 }

@@ -1,5 +1,67 @@
-﻿<h3>Product</h3>
+﻿@page "/Product"
+@using Microsoft.AspNetCore.Authorization
 
-@code {
+<PageTitle>Product</PageTitle>
 
-}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="fw-bold">Sales Order Details</h1>
+            <p class="text-muted fs-6">In this page you can see all the information of the table Product</p>
+            <hr class="my-4" style="border-top: 1.5px solid black;">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary">Filter by</button>
+        </div>
+        <div class="col-md-12 text-end">
+            <br />
+            <input type="text" class="form-control mb-3" placeholder="Write your filter value">
+            <br />
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="table-container" style="max-height: 400px; max-width: 100%; overflow-x: auto; overflow-y: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            <th>Product Number</th>
+                            <th>Make Flag</th>
+                            <th>Goods Flag</th>
+                            <th>Color</th>
+                            <th>Safety Stock Level</th>
+                            <th>Reorder Point</th>
+                            <th>Sell Start Date</th>
+                            <th>rowguid</th>
+                            <th>Modified Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in productService)
+                        {
+                            <tr>
+                                <td>@category.ProductID</td>
+                                <td>@category.Name</td>
+                                <td>@category.ProductNumber</td>
+                                <td>@category.MakeFlag</td>
+                                <td>@category.FinishedGoodsFlag</td>
+                                <td>@category.Color</td>
+                                <td>@category.SafetyStockLevel</td>
+                                <td>@category.ReorderPoint</td>
+                                <td>@category.SellStartDate</td>
+                                <td>@category.rowguid</td>
+                                <td>@category.ModifiedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

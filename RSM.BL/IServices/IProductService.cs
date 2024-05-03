@@ -1,4 +1,5 @@
-﻿using RSM.EN.DTO.Product.GetSalesReport;
+﻿using RSM.EN.DTO.Helper.Filter;
+using RSM.EN.DTO.Product.GetSalesReport;
 using RSM.EN.DTO.Product.Search;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,6 @@ namespace RSM.BL.IServices
 	public interface IProductService
 	{
 		Task<List<SearchProductResponse>> GetAllInformationProduct();
-		Task<List<GetSalesReportResponse>> GetSalesReport();
+		Task<List<GetSalesReportResponse>> GetSalesReport(FilterInformationRequest request);
 	}
 }

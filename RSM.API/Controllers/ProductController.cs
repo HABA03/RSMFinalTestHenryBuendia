@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RSM.BL.IServices;
 using RSM.BL.Services;
+using RSM.EN.DTO.Helper.Filter;
 using RSM.EN.DTO.Product.GetSalesReport;
 using RSM.EN.DTO.Product.Search;
 using RSM.EN.DTO.ProductCategory.Search;
@@ -27,11 +28,11 @@ namespace RSM.API.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet(Routes.Product.GetSalesReport)]
+		[HttpPost(Routes.Product.GetSalesReport)]
 		[ProducesResponseType(typeof(List<GetSalesReportResponse>), StatusCodes.Status200OK)]
-		public async Task<IActionResult> GetSalesReport()
+		public async Task<IActionResult> GetSalesReport([FromBody] FilterInformationRequest request)
 		{
-			var result = await _productService.GetSalesReport();
+			var result = await _productService.GetSalesReport(request);
 			return Ok(result);
 		}
 	}

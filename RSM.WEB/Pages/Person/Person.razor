@@ -1,0 +1,61 @@
+﻿@page "/Person"
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Person</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="fw-bold">Person</h1>
+            <p class="text-muted fs-6">In this page you can see all the information of the table Person</p>
+            <hr class="my-4" style="border-top: 1.5px solid black;">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary">Filter by</button>
+        </div>
+        <div class="col-md-12 text-end">
+            <br />
+            <input type="text" class="form-control mb-3" placeholder="Write your filter value">
+            <br />
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="table-container" style="max-height: 400px; overflow-y: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Business Entity ID</th>
+                            <th>Person Type</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Email Promotion</th>
+                            <th>rowguid</th>
+                            <th>Modified Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in searchPerson)
+                        {
+                            <tr>
+                                <td>@category.BusinessEntityID</td>
+                                <td>@category.PersonType</td>
+                                <td>@category.FirstName</td>
+                                <td>@category.MiddleName</td>
+                                <td>@category.LastName</td>
+                                <td>@category.EmailPromotion</td>
+                                <td>@category.rowguid</td>
+                                <td>@category.ModifiedDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,6 @@ namespace RSM.DAL.Interface
 	{
 		Task<List<Product>> GetAllInformation();
 
-		Task<List<SalesReportInformation1>> GetReportInformation();
+		Task<List<SalesReportInformation1>> GetReportInformation(int filterID, string value);
 	}
 }

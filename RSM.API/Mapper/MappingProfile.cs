@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RSM.DAL.Models;
 using RSM.EN.DTO.Customer.Search;
+using RSM.EN.DTO.Helper.Filter;
 using RSM.EN.DTO.Person.Search;
 using RSM.EN.DTO.Product.GetSalesReport;
 using RSM.EN.DTO.Product.Search;

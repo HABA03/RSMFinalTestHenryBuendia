@@ -32,5 +32,6 @@ namespace RSM.EN.DTO.SalesOrderHeader.Search
 
 		//Foreign keys
 		public int? TerritoryID { get; set; }
-	}
+        public int CustomerID { get; set; }
+    }
 }

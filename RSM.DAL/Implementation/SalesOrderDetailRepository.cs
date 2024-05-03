@@ -21,11 +21,7 @@ namespace RSM.DAL.Implementation
 
         public async Task<List<SalesOrderDetail>> GetAllInformation()
 		{
-			var result = await _context.Set<SalesOrderDetail>()
-									.Include(x => x.Product)
-									.Include(x => x.SalesOrderHeader)
-									.Take(10)
-									.ToListAsync();
+			var result = await _context.Set<SalesOrderDetail>().Take(20).ToListAsync();
 			return result;
 		}
 	}

@@ -21,11 +21,11 @@ namespace RSM.DAL.Implementation
 
 		public async Task<List<Product>> GetAllInformation()
 		{
-			var result = await _context.Set<Product>().Take(10).ToListAsync();
+			var result = await _context.Set<Product>().Take(20).ToListAsync();
 			return result;
 		}
 
-		public async Task<List<SalesReportInformation1>> GetReportInformation()
+		public async Task<List<SalesReportInformation1>> GetReportInformation(int filterID, string value)
 		{
 			var resultado = await _context.Product
 			.Join(_context.ProductSubcategory, product => product.ProductSubcategoryID, subcategory => subcategory.ProductSubcategoryID, (product, subcategory) => new { Product = product, Subcategory = subcategory })
@@ -46,7 +46,7 @@ namespace RSM.DAL.Implementation
 
 			decimal totalSales = resultado.Sum(item => item.TotalSales);
 
-			return resultado.Select(result => new SalesReportInformation1
+			var response = resultado.Select(result => new SalesReportInformation1
 			{
 				ProductID = result.ProductID,
 				ProductName = result.ProductName,
@@ -55,7 +55,26 @@ namespace RSM.DAL.Implementation
 				Region = result.Region,
 				PercentageOfTotalSalesInRegion = Math.Round((result.TotalSales * 100.0M) / totalSales, 2),
 				PercentageOfTotalCategorySalesInRegion = Math.Round((result.TotalSales * 100.0M) / resultado.Where(item => item.CategoryName == result.CategoryName && item.Region == result.Region).Sum(item => item.TotalSales), 2)
-			}).Take(100).ToList();
-		}
+			}).ToList();
+
+            switch (filterID)
+            {
+                case 1:
+                    response = response.Where(resultado => resultado.ProductID == Convert.ToInt32(value)).ToList();
+                    break;
+                case 2:
+                    response = response.Where(resultado => resultado.ProductName.Contains(value)).ToList();
+                    break;
+                case 3:
+                    response = response.Where(resultado => resultado.CategoryName.Contains(value)).ToList();
+                    break;
+				case 4:
+                    response = response.Where(resultado => resultado.Region.Contains(value)).ToList();
+                    break;
+                default:
+                    return response;
+			}
+			return response;
+        }
 	}
 }
