@@ -25,7 +25,10 @@ namespace RSM.WEB.Pages.SalesReport2
 
         protected async Task GetAllTheInformationOfSalesReport()
         {
+            getSalesReportResponse = new List<GetTheSalesReportResponse>();
+            pdfInformation = new List<CreatePdfInformationRequest>();
             var response = await _salesOrderHeaderService.GetSecondSalesReport(filterBy);
+            Tittle = "Loading...";
             foreach (var responseItem in response)
             {
                 var informationForPdf = new CreatePdfInformationRequest
@@ -52,12 +55,19 @@ namespace RSM.WEB.Pages.SalesReport2
                 getSalesReportResponse = response;
                 Tittle = "Second Sales Report";
             }
+            filterBy.Value = "0";
+            filterBy.FilterID = 0;
             StateHasChanged();
         }
 
         private async Task GeneratePdf()
         {
-            await _salesOrderHeaderService.GeneratePdf(pdfInformation);
+            if (pdfInformation.Count > 0) 
+            {
+                await _salesOrderHeaderService.GeneratePdf(pdfInformation);           
+                Tittle = "Pdf downloaded, generate a new report";
+                getSalesReportResponse = new List<GetTheSalesReportResponse>();
+            }
         }
     }
 }

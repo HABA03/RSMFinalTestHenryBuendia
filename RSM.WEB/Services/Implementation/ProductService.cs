@@ -32,7 +32,7 @@ namespace RSM.WEB.Services.Implementation
             }
             else
             {
-                throw new Exception($"Error al obtener la respuesta del servidor. Código de estado: {response.StatusCode}");
+                throw new Exception($"Error getting response from server. Status code: {response.StatusCode}");
             }
         }
 
@@ -55,7 +55,7 @@ namespace RSM.WEB.Services.Implementation
             }
             else
             {
-                throw new Exception($"Error al obtener la respuesta del servidor. Código de estado: {response.StatusCode}");
+                throw new Exception($"Error getting response from server. Status code: {response.StatusCode}");
             }
         }
     }

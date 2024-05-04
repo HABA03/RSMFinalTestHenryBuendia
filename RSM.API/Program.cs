@@ -52,7 +52,6 @@ app.UseRouting();
 
 app.UseHttpsRedirection();
 
-// Enable CORS middleware
 app.UseCors();
 
 app.UseAuthentication();
