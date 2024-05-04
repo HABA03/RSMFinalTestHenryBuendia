@@ -26,6 +26,9 @@ namespace RSM.DAL.Context
 		public DbSet<SalesOrderDetail> SalesOrderDetail { get; set; }
 		public DbSet<SalesOrderHeader> SalesOrderHeader { get; set; }
 		public DbSet<SalesTerritory> SalesTerritory { get; set; }
+		public DbSet<Customer> Customer { get; set; }
+		public DbSet<Person> Person { get; set; }
+
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -152,11 +155,45 @@ namespace RSM.DAL.Context
 				entity.Property(e => e.rowguid).IsRequired(true);
 				entity.Property(e => e.ModifiedDate).IsRequired(true);
 				entity.Property(e => e.TerritoryID).IsRequired(false);
+				entity.Property(e => e.ShipToAddressID).IsRequired(true);
+				entity.Property(e => e.BillToAddressID).IsRequired(true);
+				entity.Property(e => e.SalesPersonID).IsRequired(false);
 
 				entity.HasOne(c => c.Territory)
 						.WithMany(c => c.SalesOrderHeaders)
 						.HasForeignKey(c => c.TerritoryID)
 						.HasPrincipalKey(c => c.TerritoryID);
+			});
+
+			modelBuilder.Entity<Customer>(entity => 
+			{
+				entity.ToTable(nameof(Customer), "Sales");
+
+				entity.HasKey(e => e.CustomerID);
+				entity.Property(e => e.AccountNumber).IsRequired(true);
+				entity.Property(e => e.rowguid).IsRequired(true);
+				entity.Property(e => e.ModifiedDate).IsRequired(true);
+
+				entity.HasOne(c => c.SalesTerritory)
+						.WithMany(c => c.Customers)
+						.HasForeignKey(c => c.TerritoryID)
+						.HasPrincipalKey(c => c.TerritoryID);
+			});
+
+			modelBuilder.Entity<Person>(entity => 
+			{
+				entity.ToTable(nameof(Person), "Person");
+
+				entity.HasKey(e => e.BusinessEntityID);
+				entity.Property(e => e.PersonType).IsRequired(true);
+				entity.Property(e => e.Title).IsRequired(false);
+				entity.Property(e => e.FirstName).IsRequired(true);
+				entity.Property(e => e.MiddleName).IsRequired(false);
+				entity.Property(e => e.LastName).IsRequired(true);
+				entity.Property(e => e.Suffix).IsRequired(false);
+				entity.Property(e => e.EmailPromotion).IsRequired(true);
+				entity.Property(e => e.rowguid).IsRequired(true);
+				entity.Property(e => e.ModifiedDate).IsRequired(true);
 			});
 		}
 	}

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using RSM.EN.DTO.SalesOrderHeader.GetSalesReport;
+using RSM.EN.DTO.Helper.Filter;
 
 namespace RSM.BL.Services
 {
@@ -24,6 +26,12 @@ namespace RSM.BL.Services
 		{
 			List<SearchSalesOrderHeeaderResponse> information = _mapper.Map<List<SearchSalesOrderHeeaderResponse>>(await _salesOrderHeaderRepository.GetAllInformation());
 			return information ?? new List<SearchSalesOrderHeeaderResponse>();
+		}
+
+		public async Task<List<GetTheSalesReportResponse>> GetTheSalesReport(FilterInformationRequest request)
+		{
+			List<GetTheSalesReportResponse> information = _mapper.Map<List<GetTheSalesReportResponse>>(await _salesOrderHeaderRepository.GetTheSalesReport(request.FilterID, request.Value));
+			return information ?? new List<GetTheSalesReportResponse>();
 		}
 	}
 }

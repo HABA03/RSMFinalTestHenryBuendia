@@ -12,18 +12,18 @@ namespace RSM.BL.Services
 {
 	public class ProductCategoryService : IProductCategoryService
 	{
-		private readonly IProductCategoryRepository _productCategory;
+		private readonly IProductCategoryRepository _productCategoryRepository;
 		private readonly IMapper _mapper;
 
         public ProductCategoryService(IProductCategoryRepository productCategory, IMapper mapper)
         {
-            _productCategory = productCategory;
+            _productCategoryRepository = productCategory;
 			_mapper = mapper;
         }
 
         public async Task<List<SearchProductCategoryResponse>> GetAllInformationProductCategory()
 		{
-			List<SearchProductCategoryResponse> information = _mapper.Map<List<SearchProductCategoryResponse>>(await _productCategory.GetAllInformation());
+			List<SearchProductCategoryResponse> information = _mapper.Map<List<SearchProductCategoryResponse>>(await _productCategoryRepository.GetAllInformation());
 			return information ?? new List<SearchProductCategoryResponse>();
 		}
 	}

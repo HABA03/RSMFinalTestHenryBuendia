@@ -20,5 +20,6 @@ namespace RSM.DAL.Models
 
 
 		public List<SalesOrderHeader> SalesOrderHeaders { get; set; }
+		public List<Customer> Customers { get; set; }
 	}
 }

@@ -1,0 +1,65 @@
+﻿@page "/SecondSalesReport"
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Second Sales Report</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="fw-bold">Second Sales Report</h1>
+            <p class="text-muted fs-6">In this page you can generate and download the second sales report</p>
+            <hr class="my-4" style="border-top: 1.5px solid black;">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-success" @onclick="@GetAllTheInformationOfSalesReport">Generate sales report</button>
+            <button type="button" class="btn btn-danger" @onclick="@GeneratePdf">PDF</button>
+        </div>
+        <div class="col-md-6 text-end">
+            <select class="form-select form-select-sm" style="max-width: 80%; max-height: 65px;" @bind="filterBy.FilterID">
+                <option value="" disabled selected hidden>Filter By</option>
+                <option value="0">None</option>
+                <option value="1">Product ID</option>
+                <option value="2">Product Name</option>
+                <option value="3">Product Category</option>
+            </select>
+        </div>
+        <br />
+        <div class="col-md-8">
+            <input type="text" class="form-control" style="max-height: 65px" @bind-value="filterBy.Value" placeholder="Write your filter value">
+        </div>
+        <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-primary" style="max-height: 65px; max-width: 90px;" @onclick="@GetAllTheInformationOfSalesReport">Send</button>
+        </div>
+        <br />
+    </div>
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="pdf-container" style="border: 3px solid #AFBAD3; overflow-y: auto; max-height: 450px; min-height:450px; max-width: 800px; padding-left: 5px;">
+                <h3 class="text-center fw-bold fs-3">@Tittle</h3>
+                <br />
+                @foreach (var reportInfo in getSalesReportResponse)
+                {
+                    <p class="text-justify"><strong>Order ID: </strong>@reportInfo.OrderID</p>
+                    <p class="text-justify"><strong>Order Date: </strong>@reportInfo.OrderDate</p>
+                    <p class="text-justify"><strong>Customer ID: </strong>@reportInfo.CustomerID</p>
+                    <p class="text-justify"><strong>Product ID: </strong>@reportInfo.ProductID</p>
+                    <p class="text-justify"><strong>Product Name: </strong>@reportInfo.ProductName</p>
+                    <p class="text-justify"><strong>Product Category: </strong>@reportInfo.ProductCategory</p>
+                    <p class="text-justify"><strong>Unit Price: </strong>@reportInfo.UnitPrice</p>
+                    <p class="text-justify"><strong>Quantity: </strong>@reportInfo.Quantity</p>
+                    <p class="text-justify"><strong>Total Price: </strong>@reportInfo.TotalPrice</p>
+                    <p class="text-justify"><strong>Sales Person ID: </strong>@reportInfo.SalesPersonID</p>
+                    <p class="text-justify"><strong>Sales Person Name: </strong>@reportInfo.SalesPersonName</p>
+                    <p class="text-justify"><strong>Ship To Address ID: </strong>@reportInfo.ShipToAddressID</p>
+                    <p class="text-justify"><strong>Bill To Address ID: </strong>@reportInfo.BillToAddressID</p>
+                    <br />
+                    <br />
+                }
+            </div>
+        </div>
+    </div>
+</div>

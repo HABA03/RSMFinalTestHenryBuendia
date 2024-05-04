@@ -15,18 +15,22 @@ namespace RSM.EN.Routes
 		{
 			public const string Controller = ApiBase + "/SalesOrderHeader/";
 			public const string GetAllInformationSalesOrderHeader = Controller + "GetAllInformation/";
-		}
+			public const string GetSalesReport = Controller + "GetSalesReport2Information/";
+            public const string GeneratePdf = Controller + "GenerateSalesReport2Pdf/";
+        }
 
 		public struct Product 
 		{
 			public const string Controller = ApiBase + "/Product/";
-			public const string GetAllInformationProduct = Controller + "GetAllInformation/";
-		}
+			public const string GetAllInformationProduct = Controller + "GetAllInformation";
+			public const string GetSalesReport = Controller + "GetSalesReport1Information/";
+            public const string GeneratePdf = Controller + "GenerateSalesReport1Pdf/";
+        }
 
 		public struct ProductCategory 
 		{
 			public const string Controller = ApiBase + "/ProductCategory/";
-			public const string GetAllInformationProductCategory = Controller + "GetAllInformation/";
+			public const string GetAllInformationProductCategory = Controller + "GetAllInformation";
 		}
 
 		public struct ProductSubcategory
@@ -45,6 +49,18 @@ namespace RSM.EN.Routes
 		{
 			public const string Controller = ApiBase + "/SalesTerritory/";
 			public const string GetAllInformationSalesTerritory = Controller + "GetAllInformation/";
+		}
+
+		public struct Customer
+		{
+			public const string Controller = ApiBase + "/Customer/";
+			public const string GetAllInformationCustomers = Controller + "GetAllInformation/";
+        }
+
+		public struct Person
+		{
+			public const string Controller = ApiBase + "/Person/";
+			public const string GetAllInformationPerson = Controller + "GetAllInformation/";
 		}
 	}
 }
