@@ -21,7 +21,7 @@ namespace RSM.DAL.Implementation
 
         public async Task<List<SalesTerritory>> GetAllInformation()
 		{
-			var result = await _context.Set<SalesTerritory>().Take(20).ToListAsync();
+			var result = await _context.Set<SalesTerritory>().Take(10).ToListAsync();
 			return result;
 		}
 	}

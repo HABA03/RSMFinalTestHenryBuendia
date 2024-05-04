@@ -7,10 +7,6 @@ using RSM.EN.DTO.Helper.Filter;
 using RSM.EN.DTO.PdfSalesReport1Information.CreatePdf;
 using RSM.EN.DTO.Product.GetSalesReport;
 using RSM.WEB.Services.Interface;
-using Syncfusion.Drawing;
-using Syncfusion.HtmlConverter;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
 using System.ComponentModel;
 
 
@@ -35,7 +31,10 @@ namespace RSM.WEB.Pages.SalesReport1
 
         protected async Task GetAllTheInformationOfSalesReport()
         {
+            getSalesReportResponse = new List<GetSalesReportResponse>();
+            pdfInformation = new List<CreatePdfRequest>();
             var response = await _productService.GetFirstSalesReport(filterBy);
+            Tittle = "Loading...";
             foreach (var responseItem in response) 
             {
                 var informationForPdf = new CreatePdfRequest
@@ -57,12 +56,19 @@ namespace RSM.WEB.Pages.SalesReport1
                 getSalesReportResponse = response;
                 Tittle = "First Sales Report";
             }
+            filterBy.Value = "0";
+            filterBy.FilterID = 0;
             StateHasChanged();
         }
 
         private async Task GeneratePdf()
         {
-            await _productService.GeneratePdf(pdfInformation);
+            if (pdfInformation.Count > 0)
+            {
+                await _productService.GeneratePdf(pdfInformation);          
+                Tittle = "Pdf downloaded, generate a new report";
+                getSalesReportResponse = new List<GetSalesReportResponse>();
+            }
         }
     }
 }
