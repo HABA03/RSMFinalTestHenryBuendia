@@ -1,0 +1,54 @@
+﻿@page "/SalesOrderDetails"
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Sales Order Details</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="fw-bold">Sales Order Details</h1>
+            <p class="text-muted fs-6">In this page you can see all the information of the table Sales Order Details</p>
+            <hr class="my-4" style="border-top: 1.5px solid black;">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="table-container" style="max-height: 400px; max-width: 100%; overflow-x: auto; overflow-y: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Detail ID</th>
+                            <th>Tracking Number</th>
+                            <th>Order Qty</th>
+                            <th>Unit Price</th>
+                            <th>Price Discount</th>
+                            <th>Line Total</th>
+                            <th>rowguid</th>
+                            <th>Modified Date</th>
+                            <th>Product ID</th>
+                            <th>Sales Order ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in salesOrderDetail)
+                        {
+                            <tr>
+                                <td>@category.SalesOrderDetailID</td>
+                                <td>@category.CarrierTrackingNumber</td>
+                                <td>@category.OrderQty</td>
+                                <td>@category.UnitPrice</td>
+                                <td>@category.UnitPriceDiscount</td>
+                                <td>@category.LineTotal</td>
+                                <td>@category.rowguid</td>
+                                <td>@category.ModifiedDate</td>
+                                <td>@category.ProductID</td>
+                                <td>@category.SalesOrderID</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
