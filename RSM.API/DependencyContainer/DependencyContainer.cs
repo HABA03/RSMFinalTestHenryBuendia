@@ -18,6 +18,7 @@ namespace RSM.API.DependencyContainer
 			services.AddScoped<IProductSubcategoryService,  ProductSubcategoryService>();
 			services.AddScoped<ICustomerService, CustomerService>();
 			services.AddScoped<IPersonService, PersonService>();
+			services.AddScoped<IPdfGenerator, PdfGenerator>();
 
 			//Repositories
 			services.AddTransient<ISalesOrderHeaderRepository, SalesOrderHeaderRepository>();

@@ -16,14 +16,16 @@ namespace RSM.EN.Routes
 			public const string Controller = ApiBase + "/SalesOrderHeader/";
 			public const string GetAllInformationSalesOrderHeader = Controller + "GetAllInformation/";
 			public const string GetSalesReport = Controller + "GetSalesReport2Information/";
-		}
+            public const string GeneratePdf = Controller + "GenerateSalesReport2Pdf/";
+        }
 
 		public struct Product 
 		{
 			public const string Controller = ApiBase + "/Product/";
 			public const string GetAllInformationProduct = Controller + "GetAllInformation";
 			public const string GetSalesReport = Controller + "GetSalesReport1Information/";
-		}
+            public const string GeneratePdf = Controller + "GenerateSalesReport1Pdf/";
+        }
 
 		public struct ProductCategory 
 		{
@@ -53,7 +55,7 @@ namespace RSM.EN.Routes
 		{
 			public const string Controller = ApiBase + "/Customer/";
 			public const string GetAllInformationCustomers = Controller + "GetAllInformation/";
-		}
+        }
 
 		public struct Person
 		{

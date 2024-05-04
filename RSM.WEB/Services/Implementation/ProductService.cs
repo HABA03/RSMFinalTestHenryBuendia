@@ -1,4 +1,5 @@
 ﻿using RSM.EN.DTO.Helper.Filter;
+using RSM.EN.DTO.PdfSalesReport1Information.CreatePdf;
 using RSM.EN.DTO.Product.GetSalesReport;
 using RSM.EN.DTO.Product.Search;
 using RSM.EN.DTO.ProductCategory.Search;
@@ -17,6 +18,22 @@ namespace RSM.WEB.Services.Implementation
         public ProductService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<CreatePdfResponse> GeneratePdf(List<CreatePdfRequest> request)
+        {
+            string api = $"{apiLocalHost + Routes.Product.GeneratePdf}";
+            var response = await _httpClient.PostAsJsonAsync(api, request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<CreatePdfResponse>();
+                return result ?? new CreatePdfResponse();
+            }
+            else
+            {
+                throw new Exception($"Error al obtener la respuesta del servidor. Código de estado: {response.StatusCode}");
+            }
         }
 
         public async Task<List<SearchProductResponse>> GetAllProductsInformation()

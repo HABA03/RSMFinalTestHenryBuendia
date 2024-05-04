@@ -25,5 +25,5 @@ namespace RSM.API.Controllers
 			var result = await _customerService.GetAllInformationCustomer();
 			return Ok(result);
 		}
-	}
+    }
 }

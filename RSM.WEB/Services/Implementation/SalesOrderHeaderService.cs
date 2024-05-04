@@ -1,4 +1,5 @@
 ﻿using RSM.EN.DTO.Helper.Filter;
+using RSM.EN.DTO.PdfSalesReport2Information.CreatePdfInformation;
 using RSM.EN.DTO.Product.Search;
 using RSM.EN.DTO.SalesOrderHeader.GetSalesReport;
 using RSM.EN.DTO.SalesOrderHeader.Search;
@@ -17,6 +18,22 @@ namespace RSM.WEB.Services.Implementation
         public SalesOrderHeaderService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<CreatePdfInformationResponse> GeneratePdf(List<CreatePdfInformationRequest> request)
+        {
+            string api = $"{apiLocalHost + Routes.SalesOrderHeader.GeneratePdf}";
+            var response = await _httpClient.PostAsJsonAsync(api, request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<CreatePdfInformationResponse>();
+                return result ?? new CreatePdfInformationResponse();
+            }
+            else
+            {
+                throw new Exception($"Error al obtener la respuesta del servidor. Código de estado: {response.StatusCode}");
+            }
         }
 
         public async Task<List<SearchSalesOrderHeeaderResponse>> GetAllInformationSalesOrderHeader()
